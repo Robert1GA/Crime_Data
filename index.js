@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(ejsLayouts);
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'passwordyouwillnevereverguess',
+  secret: process.env.SESSION_SECRET || 'passwordyouwillnevereverguessmaybe',
   resave: false,  // won't save if there are no changes
   saveUninitialized: true, // save if this is a new session never saved
 }));
