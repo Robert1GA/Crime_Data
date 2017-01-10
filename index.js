@@ -12,6 +12,7 @@ app.use(require('morgan')('dev'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(ejsLayouts);
+app.use(express.static(__dirname + '/public/'));
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'passwordyouwillnevereverguessmaybe',
@@ -31,16 +32,13 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function (req, res) {
-  var chicagoCrimeUrl = 'http://api1.chicagopolice.org/clearpath/api/1.0/crimes/list?dateOccurred=12-31-2016&max=10';
-
-  request(chicagoCrimeUrl, function(error, response, body) {
-    var crimeStat = JSON.parse(body);
-    res.render('index', {crimeStat: crimeStat});
-  });
+  res.render('index');
 });
 
+
+app.use('/auth', require('./controllers/auth'));
 app.use('/crime', require('./controllers/crime'));
 
-var server = app.listen(process.env.PORT || 3001);
+var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;
