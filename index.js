@@ -1,8 +1,7 @@
 require('dotenv').config();
 var express = require('express');
-var request = require('request');
-var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
+var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
@@ -34,7 +33,6 @@ app.use(function(req, res, next) {
 app.get('/', function (req, res) {
   res.render('index');
 });
-
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/crime', require('./controllers/crime'));
