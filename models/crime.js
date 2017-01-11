@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     caseNum: DataTypes.STRING,
     date: DataTypes.STRING,
     block: DataTypes.STRING,
-    lucr: DataTypes.INTEGER,
+    lucr: DataTypes.STRING,
     locationDesc: DataTypes.STRING,
     arrest: DataTypes.BOOLEAN,
     domestic: DataTypes.BOOLEAN,
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
           crime.lng = data.results[0].geometry.location.lng;
           console.log('lat: ', crime.lat);
           console.log('lng: ', crime.lng);
-          cb(null, place);
+          cb(null, crime);
         });
       }
     }
