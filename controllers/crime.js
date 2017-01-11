@@ -15,6 +15,14 @@ router.get('/', function(req, res) {
   });
 });
 
+router.get('/test', function(req, res) {
+  db.lucr.findAll({
+    include: [db.homicide]
+  }).then(function(lucrs) {
+    console.log(lucr.homicides);
+  })
+})
+
 router.post('/address', function(req, res) {
   db.address.create({
     name: req.body.name,
