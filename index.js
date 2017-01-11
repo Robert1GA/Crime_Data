@@ -34,6 +34,7 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
+
 app.use('/auth', require('./controllers/auth'));
 app.use('/crime', require('./controllers/crime'));
 

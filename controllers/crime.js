@@ -7,12 +7,22 @@ var db = require('../models');
 var app = express();
 
 // Find all crime
-router.get('/', function (req, res) {
-  var chicagoCrimeUrl = 'http://api1.chicagopolice.org/clearpath/api/1.0/crimes/list?dateOccurred=12-31-2016&max=10';
+router.get('/', function(req, res) {
+  db.address.findAll().then(function(addresses) {
+    res.render('crime/show', {addresses: addresses});
+  }).catch(function(err) {
+    res.send({ message: 'error', error: err});
+  });
+});
 
-  request(chicagoCrimeUrl, function(error, response, body) {
-    var crimeStat = JSON.parse(body);
-    res.render('crime/allstats', {crimeStat: crimeStat});
+router.post('/address', function(req, res) {
+  db.address.create({
+    name: req.body.name,
+    address: req.body.address
+  }).then(function(address) {
+    res.redirect('/crime');
+  }).catch(function(err) {
+    res.send({message: 'error', error: err});
   });
 });
 

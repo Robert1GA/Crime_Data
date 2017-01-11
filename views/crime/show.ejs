@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Add an Address</h1>
+
+  <form action="/crime/address" method="POST">
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" placeholder="Name (example: Home, Work)">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="address" placeholder="Address">
+    </div>
+    <input type="submit" class="btn btn-primary">
+  </form>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var markers = <%- JSON.stringify(addresses) %>
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.MAP_API_KEY %>&callback=initMap">
+</script>
+<script src="/js/script.js"></script>
