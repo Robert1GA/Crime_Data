@@ -1,3 +1,21 @@
 #map {
   height: 500px;
 }
+
+#flag {
+  height: 44px;
+  width: 63px;
+  margin-top: -13px;
+  border: 1px solid darkgrey;
+  padding: 1px;
+}
+
+.alert-success {
+  background-color: rgba(0, 153, 255, 0.8);
+  color: rgba(205, 0, 1, 1);
+}
+
+.alert-danger {
+  background-color: rgba(205, 0, 1, 0.3);
+  color: rgba(0, 153, 255, 1);
+}

@@ -23,20 +23,21 @@ router.get('/show', isLoggedIn, function(req, res) {
 });
 
 router.post('/address', function(req, res) {
-  db.homicide.findAll({
-    include: [db.lucr]
-  }).then(function(homicides) {
-    name = req.body.name;
-    address = req.body.address + ' Chicago';
-    console.log('name:', name);
-    console.log('address:', address);
-    res.render('crime/show', {
-      homicides: homicides,
-      name: name,
-      address: address
-    })
+  db.address.findOrCreate({
+    where: {
+      name: req.body.name || req.body.address,
+      address: req.body.address + ' Chicago'},
+    include: [db.user]
+  }).spread(function(newAddress, wasCreated) {
+    if (newAddress) {
+      user.addAddress(newAddress);
+    }
+    callback(null);
+  }, function() {
+    res.redirect('/crime/show');
   });
 });
+
 
 router.get('/:name', function(req, res) {
   console.log('name', req.params.name)
@@ -49,8 +50,8 @@ router.get('/:name', function(req, res) {
     if (!homicide) throw Error();
     res.send('here you are');
   })
-  .catch(function(error) {
-    res.send({ message: 'error', error: error});
+  .catch(function(err) {
+    res.send({ message: 'error', error: err});
   });
 });
 

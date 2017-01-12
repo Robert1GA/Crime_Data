@@ -6,6 +6,21 @@
       <div id="map"></div>
     </div>
   </div>
+
+  <div>
+    <h3>Zoom in using map controls, or enter address below:</h3>
+    <form action="/crime/address" method="POST">
+      <div class="form-group">
+        <input type="text" class="form-control" name="name" placeholder="Name (example: Home, Work)">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="address" placeholder="Chicago Address">
+      </div>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+  <div style="height: 200px">
+  </div>
 </div>
 
 <script>

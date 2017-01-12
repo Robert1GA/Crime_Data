@@ -30,12 +30,16 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
   res.render('index');
 });
 
 app.get('/about', function(req, res) {
   res.send('about page');
+})
+
+app.get('profile', function(req, res) {
+  res.send('profile page');
 })
 
 
