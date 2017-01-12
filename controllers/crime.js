@@ -28,11 +28,11 @@ router.post('/address', function(req, res) {
       name: req.body.name || req.body.address,
       address: req.body.address + ' Chicago'},
     include: [db.user]
-  }).spread(function(newAddress, wasCreated) {
-    if (newAddress) {
-      user.addAddress(newAddress);
-    }
-    callback(null);
+  }).spread(function(address, wasCreated) {
+    req.user.addAddress(address).then(function(user) {
+      console.log("user:", user);
+      res.redirect('/crime/show');
+    });
   }, function() {
     res.redirect('/crime/show');
   });
