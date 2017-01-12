@@ -34,6 +34,10 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
+app.get('/about', function(req, res) {
+  res.send('about page');
+})
+
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/crime', require('./controllers/crime'));

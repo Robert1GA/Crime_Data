@@ -4,17 +4,6 @@ var initMap = function() {
     zoom: 10
   });
 
-  // if brower support available, ask user for location data and set the map view
-  // if (navigator.geolocation) {
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     var initialLocation = new google.maps.LatLng(
-  //       position.coords.latitude,
-  //       position.coords.longitude
-  //     );
-  //     map.setCenter(initialLocation);
-  //   });
-  // }
-
   // for each marker passed through, add it to the map with a popup
   var allMarkers = [];
   markers.forEach(function(marker) {

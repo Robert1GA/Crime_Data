@@ -17,7 +17,7 @@ router.post('/signup', function(req, res) {
   }).spread(function(user, created) {
     if(created) {
       passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/crime',
         successFlash: 'Account created and logged in'
       })(req, res);
     } else {
@@ -39,14 +39,14 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 router.get('/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/',
+  successRedirect: '/crime',
   failureRedirect: '/auth/login',
   failureFlash: 'An error occurred, please try later',
   successFlash: 'You have logged in with Facebook'
 }));
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/crime',
   failureRedirect: '/auth/login',
   successFlash: 'Logged In!',
   failureFlash: 'Invalid username and/or password'

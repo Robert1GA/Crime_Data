@@ -4,10 +4,16 @@ var path = require('path');
 var request = require('request');
 var bodyParser = require('body-parser');
 var db = require('../models');
+var isLoggedIn = require('../middleware/isLoggedIn');
 var app = express();
 
+router.get('/', isLoggedIn, function(req, res) {
+  res.render('crime/main')
+});
+
+
 // Find all homicides
-router.get('/', function(req, res) {
+router.get('/show', isLoggedIn, function(req, res) {
   db.homicide.findAll({
   }).then(function(homicides) {
     res.render('crime/show', {homicides: homicides});

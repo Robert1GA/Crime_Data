@@ -18,15 +18,15 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     hooks: {
-  beforeCreate: function(place, options, cb) {
-    geocoder.geocode(homicide.block, function(err, data) {
-      if (err) return cb(err, null);
-      place.lat = data.results[0].geometry.location.lat;
-      place.lng = data.results[0].geometry.location.lng;
-      cb(null, place);
-    });
-  }
-}
+      beforeCreate: function(place, options, cb) {
+        geocoder.geocode(homicide.block, function(err, data) {
+          if (err) return cb(err, null);
+          place.lat = data.results[0].geometry.location.lat;
+          place.lng = data.results[0].geometry.location.lng;
+          cb(null, place);
+        });
+      }
+    }
   });
   return homicide;
 };

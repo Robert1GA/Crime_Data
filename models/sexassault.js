@@ -1,3 +1,4 @@
+var geocoder = require('geocoder');
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var sexassault = sequelize.define('sexassault', {
@@ -14,6 +15,16 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         models.sexassault.belongsTo(models.lucr);
+      }
+    },
+    hooks: {
+      beforeCreate: function(place, options, cb) {
+        geocoder.geocode(sexassault.block, function(err, data) {
+          if (err) return cb(err, null);
+          place.lat = data.results[0].geometry.location.lat;
+          place.lng = data.results[0].geometry.location.lng;
+          cb(null, place);
+        });
       }
     }
   });
