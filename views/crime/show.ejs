@@ -19,9 +19,11 @@
 </div>
 
 <script>
-  var markers = <%- JSON.stringify(addresses) %>
+  var markers = <%- JSON.stringify(homicides) %>
 </script>
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.MAP_API_KEY %>&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAg21gS6eQ5vqiVyFeT4tPgWBSN2lcrR-E&callback=initMap">
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>
 <script src="/js/script.js"></script>

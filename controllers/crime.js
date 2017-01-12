@@ -8,8 +8,8 @@ var app = express();
 
 // Find all crime
 router.get('/', function(req, res) {
-  db.address.findAll().then(function(addresses) {
-    res.render('crime/show', {addresses: addresses});
+  db.homicide.findAll().then(function(homicides) {
+    res.render('crime/show', {homicides: homicides});
   }).catch(function(err) {
     res.send({ message: 'error', error: err});
   });
