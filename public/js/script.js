@@ -5,12 +5,15 @@ var initMap = function() {
   });
 
   // if brower support available, ask user for location data and set the map view
-// if (address !== undefined) {
-//   var initialLocation = geocoder.geocode(address, function(err, data) {
-//     console.log(initialLocation);
-//     map.setCenter('INITIAL LOC:',initialLocation);
-//   });
-// };
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     var initialLocation = new google.maps.LatLng(
+  //       position.coords.latitude,
+  //       position.coords.longitude
+  //     );
+  //     map.setCenter(initialLocation);
+  //   });
+  // }
 
   // for each marker passed through, add it to the map with a popup
   var allMarkers = [];
@@ -19,7 +22,7 @@ var initMap = function() {
     var position = new google.maps.LatLng(marker.lat, marker.lng);
     var googleMarker = new google.maps.Marker({
       position: position,
-      title: marker.name,
+      title: marker.caseNum,
       map: map
     });
     allMarkers.push(googleMarker);
@@ -28,7 +31,11 @@ var initMap = function() {
     // Bind a popup to the marker
     googleMarker.addListener('click', function() {
       var infoWindow = new google.maps.InfoWindow({
-        content: '<h3>' + marker.name + '</h3>'
+        content:
+          '<p>'+ 'block: ' + marker.block + '</p>' +
+          '<p>' + 'where: ' + marker.locationDesc + '</p>' +
+          '<p>' + 'date: ' + marker.date + '</p>'
+
       });
       infoWindow.open(map, googleMarker);
     });

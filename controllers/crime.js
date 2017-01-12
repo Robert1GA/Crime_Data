@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
 
 router.post('/address', function(req, res) {
   db.homicide.findAll({
-
+    include: [db.lucr]
   }).then(function(homicides) {
     name = req.body.name;
     address = req.body.address + ' Chicago';
@@ -32,16 +32,20 @@ router.post('/address', function(req, res) {
   });
 });
 
-
-// router.post('/address', function(req, res) {
-//   db.address.create({
-//     name: req.body.name,
-//     address: req.body.address
-//   }).then(function(address) {
-//     res.redirect('/crime');
-//   }).catch(function(err) {
-//     res.send({message: 'error', error: err});
-//   });
-// });
+router.get('/:name', function(req, res) {
+  console.log('name', req.params.name)
+  db.homicide.find({
+    where: { caseNum: req.params.name },
+    include: [db.lucr]
+  })
+  .then(function(homicide) {
+    console.log('hello');
+    if (!homicide) throw Error();
+    res.send('here you are');
+  })
+  .catch(function(error) {
+    res.send({ message: 'error', error: error});
+  });
+});
 
 module.exports = router;
