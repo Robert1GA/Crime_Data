@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var homicide = sequelize.define('homicide', {
+  var sexassault = sequelize.define('sexassault', {
     caseNum: DataTypes.STRING,
     date: DataTypes.STRING,
     block: DataTypes.STRING,
@@ -13,9 +13,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        models.homicide.belongsTo(models.lucr);
+        models.sexassault.belongsTo(models.lucr);
       }
     }
   });
-  return homicide;
+  return sexassault;
 };

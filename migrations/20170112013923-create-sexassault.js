@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('crimes', {
+    return queryInterface.createTable('sexassaults', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,8 +17,8 @@ module.exports = {
       block: {
         type: Sequelize.STRING
       },
-      lucr: {
-        type: Sequelize.INTEGER
+      lucrId: {
+        type: Sequelize.STRING
       },
       locationDesc: {
         type: Sequelize.STRING
@@ -46,6 +46,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('crimes');
+    return queryInterface.dropTable('sexassaults');
   }
 };

@@ -4,6 +4,14 @@ var initMap = function() {
     zoom: 10
   });
 
+  // if brower support available, ask user for location data and set the map view
+// if (address !== undefined) {
+//   var initialLocation = geocoder.geocode(address, function(err, data) {
+//     console.log(initialLocation);
+//     map.setCenter('INITIAL LOC:',initialLocation);
+//   });
+// };
+
   // for each marker passed through, add it to the map with a popup
   var allMarkers = [];
   markers.forEach(function(marker) {
@@ -27,5 +35,8 @@ var initMap = function() {
   });
   // Add a marker cluster to manage the markers
   var markerCluster = new MarkerClusterer(map, allMarkers,
-    {imagePath: '/images/m' });
+    {imagePath: '/images/m',
+    gridSize: 40,
+    maxZoom: 12
+   });
 };
