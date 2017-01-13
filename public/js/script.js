@@ -121,8 +121,11 @@ function goToAddress(geocoder, resultsMap) {
 $('.edit-form').on('submit', function(e){
   e.preventDefault();
   var addressElement = $(this);
-  var addressUrl = addressElement.attr('href');
+  var addressUrl = addressElement.attr('action');
   var addressData = addressElement.serialize();
+  console.log(addressElement);
+  console.log(addressUrl);
+  console.log(addressData);
   $.ajax({
     method:'PUT',
     url: addressUrl,

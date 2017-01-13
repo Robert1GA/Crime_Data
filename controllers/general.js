@@ -4,6 +4,7 @@ var router = express.Router();
 var path = require('path');
 var request = require('request');
 var bodyParser = require('body-parser');
+var ejsLayouts = require('express-ejs-layouts');
 var db = require('../models');
 var isLoggedIn = require('../middleware/isLoggedIn');
 var app = express();
@@ -39,7 +40,8 @@ router.get('/address/:id/edit',function(req, res) {
 });
 
 // submit the edit on the address
-app.put('/address/:id', function(req, res) {
+router.put('/address/:id', function(req, res) {
+  console.log('here');
   db.address.update(req.body,
   {where: {id: req.params.id}}).then(function(addresses) {
     res.send({message: 'edit success'});
