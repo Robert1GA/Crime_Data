@@ -1,5 +1,4 @@
 var chicago = {lat: 41.8829321, lng: -87.6455962};
-
 function CenterControl(controlDiv, map, center) {
   var control = this;
 
