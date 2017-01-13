@@ -48,11 +48,25 @@
   text-indent: 50px;
 }
 
-.edit-form {
-  width: 30%;
-}
-
 .small-icon {
   width: 20px;
   height: 20px;
+}
+
+.error404 {
+  width: 550px;
+  height: 550px;
+}
+
+#chicagoPic {
+  width: 500px;
+  height: 500px;
+}
+
+.splash {
+  color: rgba(205, 0, 1, 1);
+}
+
+.form-control {
+  width: 60%
 }

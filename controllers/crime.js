@@ -24,8 +24,8 @@ router.get('/show', isLoggedIn, function(req, res) {
         addresses: addresses
       });
     })
-  }).catch(function(err) {
-    res.send({ message: 'error', error: err});
+  }).catch(function(error) {
+    res.status(400).render('general/404');
   });
 });
 
@@ -56,9 +56,8 @@ router.get('/:name', function(req, res) {
     console.log('hello');
     if (!homicide) throw Error();
     res.send('here you are');
-  })
-  .catch(function(err) {
-    res.send({ message: 'error', error: err});
+  }).catch(function(error) {
+    res.status(400).render('general/404');
   });
 });
 

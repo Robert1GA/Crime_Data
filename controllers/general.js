@@ -10,11 +10,9 @@ var app = express();
 
 router.get('/faq', function(req, res) {
   res.send('faq page');
-})
+});
 
-
-router.get('/profile', function(req, res) {
-  console.log(req.user.email);
+router.get('/profile', isLoggedIn, function(req, res) {
   db.user.find({
     where: {email: req.user.email},
     include: [db.address]
@@ -22,21 +20,36 @@ router.get('/profile', function(req, res) {
     res.render('general/profile', {
       user: user
     });
-  }).catch(function(err) {
-    res.send({ message: 'error', error: err});
+  }).catch(function(error) {
+    res.status(400).render('general/404');
   });
 });
 
-router.put('/address/:id', function(req, res) {
+// page to edit existing address
+router.get('/address/:id/edit',function(req, res) {
+  db.address.find({
+    where: {id: req.params.id}
+  }).then(function(addresses, users) {
+    res.render('general/edit', {
+      addresses: addresses
+    });
+  }).catch(function(error) {
+    res.status(400).render('general/404');
+  });
+});
+
+// submit the edit on the address
+app.put('/address/:id', function(req, res) {
   db.address.update(req.body,
   {where: {id: req.params.id}}).then(function(addresses) {
     res.send({message: 'edit success'});
+  }).catch(function(error) {
+    res.status(400).render('general/404');
   });
 });
 
 // delete an address
 router.delete('/address/:id', function(req, res) {
-  console.log('REQ',req.params.id);
   db.address.findById(req.params.id).then(function(addresses) {
     addresses.destroy();
     res.send({message: 'deleted'});

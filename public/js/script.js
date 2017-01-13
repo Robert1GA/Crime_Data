@@ -77,7 +77,7 @@ var initMap = function() {
     var homicideMarker = new google.maps.Marker({
       position: position,
       icon: icons.homicide.icon,
-      title: marker.caseNum,
+      title: marker.locationDesc,
       map: map
     });
     allMarkers.push(homicideMarker);
@@ -121,6 +121,21 @@ function goToAddress(geocoder, resultsMap) {
     }
   });
 }
+
+$('.edit-form').on('submit', function(e){
+  e.preventDefault();
+  var addressElement = $(this);
+  var addressUrl = addressElement.attr('action');
+  var addressData = addressElement.serialize();
+  $.ajax({
+    method:'PUT',
+    url: addressUrl,
+    data: addressData
+  }).done(function(data) {
+    console.log(data);
+    window.location = '/general/profile';
+  });
+});
 
 $('.delete-link').on('click', function(e) {
   e.preventDefault();
