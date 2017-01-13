@@ -18,12 +18,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     hooks: {
-      beforeCreate: function(place, options, cb) {
+      beforeCreate: function(burglary, options, cb) {
         geocoder.geocode(burglary.block, function(err, data) {
           if (err) return cb(err, null);
-          place.lat = data.results[0].geometry.location.lat;
-          place.lng = data.results[0].geometry.location.lng;
-          cb(null, place);
+          burglary.lat = data.results[0].geometry.location.lat;
+          burglary.lng = data.results[0].geometry.location.lng;
+          cb(null, burglary);
         });
       }
     }

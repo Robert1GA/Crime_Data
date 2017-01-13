@@ -18,12 +18,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     hooks: {
-      beforeCreate: function(place, options, cb) {
+      beforeCreate: function(sexassault, options, cb) {
         geocoder.geocode(sexassault.block, function(err, data) {
           if (err) return cb(err, null);
-          place.lat = data.results[0].geometry.location.lat;
-          place.lng = data.results[0].geometry.location.lng;
-          cb(null, place);
+          sexassault.lat = data.results[0].geometry.location.lat;
+          sexassault.lng = data.results[0].geometry.location.lng;
+          cb(null, sexassault);
         });
       }
     }

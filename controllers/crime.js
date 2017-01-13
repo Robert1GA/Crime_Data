@@ -15,8 +15,14 @@ router.get('/', isLoggedIn, function(req, res) {
 // Find all homicides
 router.get('/show', isLoggedIn, function(req, res) {
   db.homicide.findAll({
+    include: [db.lucr]
   }).then(function(homicides) {
-    res.render('crime/show', {homicides: homicides});
+    req.user.getAddresses().then(function(addresses) {
+      res.render('crime/show', {
+        homicides: homicides,
+        addresses: addresses
+      });
+    })
   }).catch(function(err) {
     res.send({ message: 'error', error: err});
   });

@@ -1,12 +1,21 @@
 <div class="container">
 
-
   <div class="row">
     <div class="col-md-6">
       <div id="map"></div>
     </div>
+    <div class="col-md-6">
+      <h2>Previous Address</h2>
+      <% addresses.forEach(function(address) { %>
+        <div class="well">
+          <p>
+            <%= address.name %>:
+            <%= address.address %>
+          </p>
+        </div>
+      <% }); %>
+    </div>
   </div>
-
   <div>
     <h3>Zoom in using map controls, or enter address below:</h3>
     <form action="/crime/address" method="POST">
@@ -14,7 +23,7 @@
         <input type="text" class="form-control" name="name" placeholder="Name (example: Home, Work)">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" name="address" placeholder="Chicago Address">
+        <input type="text" class="form-control" name="address" placeholder="Chicago Address (not needed: city, State)">
       </div>
       <input type="submit" class="btn btn-primary">
     </form>
@@ -25,6 +34,7 @@
 
 <script>
   var markers = <%- JSON.stringify(homicides) %>
+
 </script>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAg21gS6eQ5vqiVyFeT4tPgWBSN2lcrR-E&callback=initMap">
