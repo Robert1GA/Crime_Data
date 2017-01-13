@@ -34,17 +34,10 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/about', function(req, res) {
-  res.send('about page');
-})
-
-app.get('profile', function(req, res) {
-  res.send('profile page');
-})
-
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/crime', require('./controllers/crime'));
+app.use('/general', require('./controllers/general'));
 
 var server = app.listen(process.env.PORT || 3000);
 

@@ -13,12 +13,11 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/about">About this Site</a></li>
-        <li><a href="/profile">Profile</a></li>
-
-        <li><a href="/auth/logout">Logout</a></li>
-
-
+        <li><a href="/general/faq">FAQ / About</a></li>
+        <% if(currentUser !== undefined) { %>
+          <li><a href="/general/profile">Profile</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        <% }; %>
       </ul>
     </div>
   </div>

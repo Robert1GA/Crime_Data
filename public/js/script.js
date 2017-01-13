@@ -1,4 +1,3 @@
-var map;
 var chicago = {lat: 41.8829321, lng: -87.6455962};
 
 function CenterControl(controlDiv, map, center) {
@@ -46,7 +45,9 @@ function CenterControl(controlDiv, map, center) {
 var initMap = function() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: chicago,
-    zoom: 10
+    zoom: 10,
+    disableDefaultUI: true,
+    zoomControl: true
   });
 
   // Create the DIV to hold the control and call the CenterControl()
@@ -55,6 +56,7 @@ var initMap = function() {
   var centerControlDiv = document.createElement('div');
   var centerControl = new CenterControl(centerControlDiv, map, chicago);
 
+  // Add additional controls to map
   centerControlDiv.index = 1;
   centerControlDiv.style['padding-top'] = '10px';
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
@@ -72,17 +74,16 @@ var initMap = function() {
   markers.forEach(function(marker) {
     console.log(marker);
     var position = new google.maps.LatLng(marker.lat, marker.lng);
-    var googleMarker = new google.maps.Marker({
+    var homicideMarker = new google.maps.Marker({
       position: position,
       icon: icons.homicide.icon,
       title: marker.caseNum,
       map: map
     });
-    allMarkers.push(googleMarker);
-
+    allMarkers.push(homicideMarker);
 
     // Bind a popup to the marker
-    googleMarker.addListener('click', function() {
+    homicideMarker.addListener('click', function() {
       var infoWindow = new google.maps.InfoWindow({
         content:
           '<p>'+ 'BLOCK: ' + marker.block + '</p>' +
@@ -90,22 +91,50 @@ var initMap = function() {
           '<p>' + 'DATE: ' + marker.date + '</p>'
 
       });
-      infoWindow.open(map, googleMarker);
+      infoWindow.open(map, homicideMarker);
     });
   });
+
   // Add a marker cluster to manage the markers
   var markerCluster = new MarkerClusterer(map, allMarkers,
     {imagePath: '/images/m',
     gridSize: 40,
     maxZoom: 12
    });
+
+   // Listen for click event, then re-center and zoom in to address entered
+   var geocoder = new google.maps.Geocoder();
+   document.getElementById('submit').addEventListener('click', function() {
+     goToAddress(geocoder, map);
+   });
 };
 
+function goToAddress(geocoder, resultsMap) {
+  var locationToGo = document.getElementById('address').value;
+  geocoder.geocode({'address': locationToGo}, function(results, status) {
+    if (status === 'OK') {
+      resultsMap.setCenter(results[0].geometry.location);
+      resultsMap.setZoom(15);
+      console.log(done);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
 
-//
-// function findLocation() {
-//         var map = new google.maps.Map(document.getElementById('map'), {
-//           zoom: 8,
-//           center: {lat: 35.717, lng: 139.731}
-//         });
-//       }
+$('.delete-link').on('click', function(e) {
+  e.preventDefault();
+  console.log('THIS', this);
+  var addressElement = $(this);
+  var addressUrl = addressElement.attr('href');
+  console.log('ADDY ELEMENT', addressElement);
+  console.log('URL', addressUrl);
+  $.ajax({
+    method: 'DELETE',
+    url: addressUrl
+  }).done(function(data) {
+    console.log(data);
+    addressElement.remove();
+    window.location = '/general/profile';
+  });
+});
