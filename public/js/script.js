@@ -65,7 +65,7 @@ var initMap = function() {
   // for each marker passed through, add it to the map with a popup
   var allMarkers = [];
   markers.forEach(function(marker) {
-    console.log(marker);
+    // console.log(marker);
     var position = new google.maps.LatLng(marker.lat, marker.lng);
     var homicideMarker = new google.maps.Marker({
       position: position,
@@ -112,7 +112,7 @@ function goToAddress(geocoder, resultsMap) {
       resultsMap.setZoom(15);
       console.log(done);
     } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      console.log('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
@@ -123,9 +123,6 @@ $('.edit-form').on('submit', function(e){
   var addressElement = $(this);
   var addressUrl = addressElement.attr('action');
   var addressData = addressElement.serialize();
-  console.log(addressElement);
-  console.log(addressUrl);
-  console.log(addressData);
   $.ajax({
     method:'PUT',
     url: addressUrl,

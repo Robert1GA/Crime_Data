@@ -4,7 +4,7 @@
     <div class="col-md-8">
       <div id="map"></div>
     </div>
-    <div class="col-md-4">
+    <div id="savedAddress" class="col-md-4">
       <h2>Previous Address</h2>
       <% addresses.forEach(function(address) { %>
         <div class="well">
@@ -26,8 +26,8 @@
         <input type="text" class="form-control" name="address"
           id="address" placeholder="Chicago Street Address (omit the city & state)">
       </div>
-      <input id="submit" type="submit" class="btn btn-danger" value="Save Address">
-      <input id="zoom" type="submit" class="btn btn-primary" value="Go to Address">
+      <input id="submit" type="button" class="btn btn-danger" value="Save Address">
+      <input id="zoom" type="button" class="btn btn-primary" value="Go to Address">
     </form>
   </div>
 </div>

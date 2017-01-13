@@ -15,7 +15,6 @@ router.get('/show', isLoggedIn, function(req, res) {
     include: [db.lucr]
   }).then(function(homicides) {
     req.user.getAddresses().then(function(addresses) {
-      console.log(addresses);
       res.render('crime/show', {
         homicides: homicides,
         addresses: addresses
@@ -43,7 +42,6 @@ router.post('/address', function(req, res) {
 
 
 router.get('/:name', function(req, res) {
-  console.log('name', req.params.name)
   db.homicide.find({
     where: { caseNum: req.params.name },
     include: [db.lucr]
