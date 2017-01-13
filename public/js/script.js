@@ -59,6 +59,9 @@ var initMap = function() {
   var icons = {
     homicide: {
       icon: '/images/homicide.png'
+    },
+    robbery: {
+      icon:'/images/robbery.png'
     }
   };
 
@@ -70,7 +73,7 @@ var initMap = function() {
     var homicideMarker = new google.maps.Marker({
       position: position,
       icon: icons.homicide.icon,
-      title: marker.locationDesc,
+      title: marker.block,
       map: map
     });
     allMarkers.push(homicideMarker);
@@ -81,8 +84,7 @@ var initMap = function() {
         content:
           '<p>'+ 'BLOCK: ' + marker.block + '</p>' +
           '<p>' + 'LOCATION: ' + marker.locationDesc + '</p>' +
-          '<p>' + 'DATE: ' + marker.date + '</p>' +
-          '<p>' +  marker.homicides  + '</p>'
+          '<p>' + 'DATE: ' + marker.date + '</p>'
 
       });
       infoWindow.open(map, homicideMarker);
@@ -95,6 +97,7 @@ var initMap = function() {
     gridSize: 40,
     maxZoom: 12
    });
+
 
    // Listen for click event, then re-center and zoom in to address entered
    var geocoder = new google.maps.Geocoder();
