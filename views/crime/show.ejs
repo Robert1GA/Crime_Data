@@ -10,7 +10,7 @@
         <div class="well">
           <p>
             <%= address.name %>:
-            <%= address.address %>
+            <a href="#"><%= address.address %></a>
           </p>
         </div>
       <% }); %>
@@ -26,7 +26,8 @@
         <input type="text" class="form-control" name="address"
           id="address" placeholder="Chicago Street Address (omit the city & state)">
       </div>
-      <input id="submit" type="submit" class="btn btn-primary">
+      <input id="submit" type="submit" class="btn btn-danger" value="Save Address">
+      <input id="zoom" type="submit" class="btn btn-primary" value="Go to Address">
     </form>
   </div>
 </div>

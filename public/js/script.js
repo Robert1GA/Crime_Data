@@ -28,18 +28,13 @@ function CenterControl(controlDiv, map, center) {
   });
 };
 
-  // Define a property to hold the center state.
-  CenterControl.prototype.center_ = null;
+// Define a property to hold the center state.
+CenterControl.prototype.center_ = null;
 
-  // Gets the map center.
-  CenterControl.prototype.getCenter = function() {
+// Gets the map center.
+CenterControl.prototype.getCenter = function() {
   return this.center_;
-  };
-
-  // Sets the map center
-  // CenterControl.prototype.setCenter = function(center) {
-  // this.center_ = center;
-  // };
+};
 
 var initMap = function() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -59,7 +54,6 @@ var initMap = function() {
   centerControlDiv.index = 1;
   centerControlDiv.style['padding-top'] = '10px';
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-
 
   // custom icons
   var icons = {
@@ -87,7 +81,8 @@ var initMap = function() {
         content:
           '<p>'+ 'BLOCK: ' + marker.block + '</p>' +
           '<p>' + 'LOCATION: ' + marker.locationDesc + '</p>' +
-          '<p>' + 'DATE: ' + marker.date + '</p>'
+          '<p>' + 'DATE: ' + marker.date + '</p>' +
+          '<p>' +  marker.homicides  + '</p>'
 
       });
       infoWindow.open(map, homicideMarker);
@@ -103,7 +98,8 @@ var initMap = function() {
 
    // Listen for click event, then re-center and zoom in to address entered
    var geocoder = new google.maps.Geocoder();
-   document.getElementById('submit').addEventListener('click', function() {
+   document.getElementById('zoom').addEventListener('click', function(e) {
+     e.preventDefault;
      goToAddress(geocoder, map);
    });
 };
@@ -121,33 +117,30 @@ function goToAddress(geocoder, resultsMap) {
   });
 }
 
+// Edit addresses
 $('.edit-form').on('submit', function(e){
   e.preventDefault();
   var addressElement = $(this);
-  var addressUrl = addressElement.attr('action');
+  var addressUrl = addressElement.attr('href');
   var addressData = addressElement.serialize();
   $.ajax({
     method:'PUT',
     url: addressUrl,
     data: addressData
   }).done(function(data) {
-    console.log(data);
     window.location = '/general/profile';
   });
 });
 
+// Delete addresses
 $('.delete-link').on('click', function(e) {
   e.preventDefault();
-  console.log('THIS', this);
   var addressElement = $(this);
   var addressUrl = addressElement.attr('href');
-  console.log('ADDY ELEMENT', addressElement);
-  console.log('URL', addressUrl);
   $.ajax({
     method: 'DELETE',
     url: addressUrl
   }).done(function(data) {
-    console.log(data);
     addressElement.remove();
     window.location = '/general/profile';
   });

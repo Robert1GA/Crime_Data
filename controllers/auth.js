@@ -18,12 +18,12 @@ router.post('/signup', function(req, res) {
   }).spread(function(user, created) {
     if(created) {
       passport.authenticate('local', {
-        successRedirect: '/crime',
+        successRedirect: '/crime/show',
         successFlash: 'Account created and logged in'
       })(req, res);
     } else {
       req.flash('error', 'Email already exists');
-      res.redirect('/auth/signup');
+      res.redirect('/auth/login');
     }
   }).catch(function(error) {
     req.flash('error', error.message);
@@ -40,15 +40,15 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 router.get('/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/crime',
-  failureRedirect: '/auth/login',
+  successRedirect: '/crime/show',
+  failureRedirect: '/auth/signup',
   failureFlash: 'An error occurred, please try later',
   successFlash: 'You have logged in with Facebook'
 }));
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/crime',
-  failureRedirect: '/auth/login',
+  failureRedirect: '/auth/signup',
   successFlash: 'Logged In!',
   failureFlash: 'Invalid username and/or password'
 }));

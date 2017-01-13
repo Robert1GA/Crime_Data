@@ -9,7 +9,7 @@ var isLoggedIn = require('../middleware/isLoggedIn');
 var app = express();
 
 router.get('/faq', function(req, res) {
-  res.send('faq page');
+  res.render('general/faq');
 });
 
 router.get('/profile', isLoggedIn, function(req, res) {

@@ -8,10 +8,6 @@ var db = require('../models');
 var isLoggedIn = require('../middleware/isLoggedIn');
 var app = express();
 
-router.get('/', isLoggedIn, function(req, res) {
-  res.render('crime/main')
-});
-
 
 // Find all homicides
 router.get('/show', isLoggedIn, function(req, res) {
@@ -19,6 +15,7 @@ router.get('/show', isLoggedIn, function(req, res) {
     include: [db.lucr]
   }).then(function(homicides) {
     req.user.getAddresses().then(function(addresses) {
+      console.log(addresses);
       res.render('crime/show', {
         homicides: homicides,
         addresses: addresses
@@ -37,7 +34,6 @@ router.post('/address', function(req, res) {
     include: [db.user]
   }).spread(function(address, wasCreated) {
     req.user.addAddress(address).then(function(user) {
-      console.log("user:", user);
       res.redirect('/crime/show');
     });
   }, function() {
@@ -53,7 +49,6 @@ router.get('/:name', function(req, res) {
     include: [db.lucr]
   })
   .then(function(homicide) {
-    console.log('hello');
     if (!homicide) throw Error();
     res.send('here you are');
   }).catch(function(error) {
