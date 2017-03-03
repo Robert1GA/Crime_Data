@@ -5,25 +5,38 @@ var path = require('path');
 var request = require('request');
 var bodyParser = require('body-parser');
 var db = require('../models');
-var isLoggedIn = require('../middleware/isLoggedIn');
+// var isLoggedIn = require('../middleware/isLoggedIn');
 var app = express();
 
 
 // Find all homicides
-router.get('/show', isLoggedIn, function(req, res) {
-  db.homicide.findAll({
-    
-  }).then(function(homicides) {
-    req.user.getAddresses().then(function(addresses) {
-      res.render('crime/show', {
-        homicides: homicides,
-        addresses: addresses
-      });
-    })
-  }).catch(function(error) {
+// router.get('/show', isLoggedIn, function(req, res) {
+//   db.homicide.findAll({
+//
+//   }).then(function(homicides) {
+//     req.user.getAddresses().then(function(addresses) {
+//       res.render('crime/show', {
+//         homicides: homicides,
+//         addresses: addresses
+//       });
+//     })
+//     console.log('db complete');
+//   }).catch(function(error) {
+//     console.log(error);
+//     res.status(400).render('general/404');
+//   });
+// });
+
+router.get('/show', function(req, res) {
+  db.homicide.findAll()
+  .then(function(homicides) {
+    res.render('crime/show', {homicides: homicides})
+  })
+  .catch(function(error) {
     res.status(400).render('general/404');
   });
 });
+
 
 router.post('/address', function(req, res) {
   db.address.findOrCreate({

@@ -1,3 +1,5 @@
+
+
 var chicago = {lat: 41.8829321, lng: -87.6455962};
 function CenterControl(controlDiv, map, center) {
   var control = this;
@@ -100,11 +102,12 @@ var initMap = function() {
 
 
    // Listen for click event, then re-center and zoom in to address entered
-   var geocoder = new google.maps.Geocoder();
-   document.getElementById('zoom').addEventListener('click', function(e) {
-     e.preventDefault;
-     goToAddress(geocoder, map);
-   });
+   // CURRENTLY DISABLED, AS I HAVE REMOVED FORM FROM PAGE
+  //  var geocoder = new google.maps.Geocoder();
+  //  document.getElementById('zoom').addEventListener('click', function(e) {
+  //    e.preventDefault;
+  //    goToAddress(geocoder, map);
+  //  });
 };
 
 function goToAddress(geocoder, resultsMap) {
@@ -121,30 +124,36 @@ function goToAddress(geocoder, resultsMap) {
 }
 
 // Edit addresses
-$('.edit-form').on('submit', function(e){
-  e.preventDefault();
-  var addressElement = $(this);
-  var addressUrl = addressElement.attr('action');
-  var addressData = addressElement.serialize();
-  $.ajax({
-    method:'PUT',
-    url: addressUrl,
-    data: addressData
-  }).done(function(data) {
-    window.location = '/general/profile';
-  });
-});
+// $('.edit-form').on('submit', function(e){
+//   e.preventDefault();
+//   var addressElement = $(this);
+//   var addressUrl = addressElement.attr('action');
+//   var addressData = addressElement.serialize();
+//   $.ajax({
+//     method:'PUT',
+//     url: addressUrl,
+//     data: addressData
+//   }).done(function(data) {
+//     window.location = '/general/profile';
+//   });
+// });
 
 // Delete addresses
-$('.delete-link').on('click', function(e) {
-  e.preventDefault();
-  var addressElement = $(this);
-  var addressUrl = addressElement.attr('href');
-  $.ajax({
-    method: 'DELETE',
-    url: addressUrl
-  }).done(function(data) {
-    addressElement.remove();
-    window.location = '/general/profile';
-  });
-});
+// $('.delete-link').on('click', function(e) {
+//   e.preventDefault();
+//   var addressElement = $(this);
+//   var addressUrl = addressElement.attr('href');
+//   $.ajax({
+//     method: 'DELETE',
+//     url: addressUrl
+//   }).done(function(data) {
+//     addressElement.remove();
+//     window.location = '/general/profile';
+//   });
+// });
+
+
+// $( document ).ready(function() {
+//   console.log('also ready');
+//
+// });

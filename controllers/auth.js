@@ -47,7 +47,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
 }));
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/crime',
+  successRedirect: '/crime/show',
   failureRedirect: '/auth/signup',
   successFlash: 'Logged In!',
   failureFlash: 'Invalid username and/or password'
