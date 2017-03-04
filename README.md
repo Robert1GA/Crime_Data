@@ -1,7 +1,13 @@
 # Crime_Data
+<h1>Live Site</h1>
+loated here: https://chicago-crime-map.herokuapp.com/
+
+<h1>Instruction if forked or cloned</h1>
+run npm install
+
 <h1>FAQ / Info</h1>
 <p class="question">Q: What is this page?</p>
-<p>A: This page presents a map represntation on where homicides took place within the city limits of Chicago.</p>
+<p>A: This page presents a visual representation on where homicides took place within the city limits of Chicago.</p>
 
 <p class="question">Q: Why did you make it?</p>
 <p>A: In 2016, the Chicago homicide rate was the highest it has been in the last 20 years. The current total (which may still be updated) was 746. I thought it would be useful to show the locations that each one took place using the data from the City of Chicago public data.</p>
