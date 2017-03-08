@@ -150,7 +150,7 @@ $('.delete-link').on('click', function(e) {
 });
 
 
-$( document ).ready(function() {
-  console.log('I am ready');
-
-});
+// $( document ).ready(function() {
+//   console.log('I am ready');
+//
+// });
