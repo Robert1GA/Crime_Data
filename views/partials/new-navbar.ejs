@@ -8,18 +8,13 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/"><img id="flag" src="/images/il-flag.gif"</a>
-      <a class="navbar-brand" href="/crime/show">Chicago Homicides Map</a>
+      <a class="navbar-brand" href="/crime">Chicago Homicides Map</a>
     </div>
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
         <li><a href="/general/faq">FAQ / About</a></li>
-        <% if(currentUser !== undefined) { %>
           <li><a href="/general/profile">Profile</a></li>
-          <li><a href="/auth/logout">Logout</a></li>
-        <% } else { %>
-          <li><a href="/auth/login">Log-in</a></li>
-          <% } %>
       </ul>
     </div>
   </div>

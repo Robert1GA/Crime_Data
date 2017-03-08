@@ -18,17 +18,18 @@ app.use(session({
   resave: false,  // won't save if there are no changes
   saveUninitialized: true, // save if this is a new session never saved
 }));
+// API_KEY=AIzaSyAg21gS6eQ5vqiVyFeT4tPgWBSN2lcrR-E  // old key
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(flash());
 
-// app.use(function(req, res, next) {
-//   res.locals.alerts = req.flash();
-//   res.locals.currentUser = req.user;
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.get('/', function(req, res) {
   res.render('index');
@@ -41,5 +42,3 @@ app.use('/general', require('./controllers/general'));
 var server = app.listen(process.env.PORT || 3000);
 
 module.exports = server;
-
-// API_KEY=AIzaSyAg21gS6eQ5vqiVyFeT4tPgWBSN2lcrR-E

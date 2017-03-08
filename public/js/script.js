@@ -1,6 +1,5 @@
-
-
 var chicago = {lat: 41.8829321, lng: -87.6455962};
+
 function CenterControl(controlDiv, map, center) {
   var control = this;
 
@@ -21,14 +20,13 @@ function CenterControl(controlDiv, map, center) {
   goCenterUI.appendChild(goCenterText);
 
   // Set up the click event listener for 'Center Map': Set the center of
-  // the map
-  // to the current center of the control.
+  // the map to the current center of the control.
   goCenterUI.addEventListener('click', function() {
     var currentCenter = control.getCenter();
     map.setCenter(currentCenter);
     map.setZoom(10);
   });
-};
+}; // End of CenterControl()
 
 // Define a property to hold the center state.
 CenterControl.prototype.center_ = null;
@@ -102,13 +100,13 @@ var initMap = function() {
 
 
    // Listen for click event, then re-center and zoom in to address entered
-   // CURRENTLY DISABLED, AS I HAVE REMOVED FORM FROM PAGE
-  //  var geocoder = new google.maps.Geocoder();
-  //  document.getElementById('zoom').addEventListener('click', function(e) {
-  //    e.preventDefault;
-  //    goToAddress(geocoder, map);
-  //  });
-};
+   var geocoder = new google.maps.Geocoder();
+   document.getElementById('zoom').addEventListener('click', function(e) {
+     e.preventDefault;
+     goToAddress(geocoder, map);
+   });
+
+}; // End of initMap()
 
 function goToAddress(geocoder, resultsMap) {
   var locationToGo = document.getElementById('address').value;
@@ -116,44 +114,43 @@ function goToAddress(geocoder, resultsMap) {
     if (status === 'OK') {
       resultsMap.setCenter(results[0].geometry.location);
       resultsMap.setZoom(15);
-      console.log(done);
     } else {
       console.log('Geocode was not successful for the following reason: ' + status);
     }
   });
-}
+} // End of goToAddress()
 
 // Edit addresses
-// $('.edit-form').on('submit', function(e){
-//   e.preventDefault();
-//   var addressElement = $(this);
-//   var addressUrl = addressElement.attr('action');
-//   var addressData = addressElement.serialize();
-//   $.ajax({
-//     method:'PUT',
-//     url: addressUrl,
-//     data: addressData
-//   }).done(function(data) {
-//     window.location = '/general/profile';
-//   });
-// });
+$('.edit-form').on('submit', function(e){
+  e.preventDefault();
+  var addressElement = $(this);
+  var addressUrl = addressElement.attr('action');
+  var addressData = addressElement.serialize();
+  $.ajax({
+    method:'PUT',
+    url: addressUrl,
+    data: addressData
+  }).done(function(data) {
+    window.location = '/general/profile';
+  });
+});
 
 // Delete addresses
-// $('.delete-link').on('click', function(e) {
-//   e.preventDefault();
-//   var addressElement = $(this);
-//   var addressUrl = addressElement.attr('href');
-//   $.ajax({
-//     method: 'DELETE',
-//     url: addressUrl
-//   }).done(function(data) {
-//     addressElement.remove();
-//     window.location = '/general/profile';
-//   });
-// });
+$('.delete-link').on('click', function(e) {
+  e.preventDefault();
+  var addressElement = $(this);
+  var addressUrl = addressElement.attr('href');
+  $.ajax({
+    method: 'DELETE',
+    url: addressUrl
+  }).done(function(data) {
+    addressElement.remove();
+    window.location = '/general/profile';
+  });
+});
 
 
-// $( document ).ready(function() {
-//   console.log('also ready');
-//
-// });
+$( document ).ready(function() {
+  console.log('I am ready');
+
+});

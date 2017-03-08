@@ -4,14 +4,40 @@
     <div class="col-md-8">
       <div id="map"></div>
     </div>
+    <div id="savedAddress" class="col-md-4">
+      <h2>Previous Address</h2>
+      <% addresses.forEach(function(address) { %>
+        <div class="well">
+          <p>
+            <%= address.name %>:
+            <a class="addresses" href="#"><%= address.address %></a>
+          </p>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <div>
+    <h3>Zoom in using map controls, or enter address below:</h3>
+    <form action="/crime/address" method="POST">
+      <div class="form-group">
+        <input type="text" class="form-control" name="name" placeholder="Name (example: Home, Work)">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="address"
+          id="address" placeholder="Chicago Street Address (omit the city & state)">
+      </div>
+      <input id="submit" type="submit" class="btn btn-danger" value="Save Address">
+      <input id="zoom" type="button" class="btn btn-primary" value="Go to Address">
+    </form>
   </div>
 </div>
 
 <script>
   var markers = <%- JSON.stringify(homicides) %>
+
 </script>
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4_czTJLG6hnJWm_Jy6aQKbqPjSqSUVU&libraries=places&callback=initMap" async defer>
+<script defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4_czTJLG6hnJWm_Jy6aQKbqPjSqSUVU&libraries=places&callback=initMap">
 </script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>
