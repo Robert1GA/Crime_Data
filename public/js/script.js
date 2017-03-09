@@ -84,10 +84,11 @@ var initMap = function() {
         content:
           '<p>'+ 'BLOCK: ' + marker.block + '</p>' +
           '<p>' + 'LOCATION: ' + marker.locationDesc + '</p>' +
-          '<p>' + 'DATE: ' + marker.date + '</p>'
+          '<p>' + 'DATE: ' + marker.date + '</p>' +
+          '<p>' + 'LUCR ' + marker.primaryDesc
 
       });
-      infoWindow.open(map, homicideMarker);
+      infoWindow.open(map, this);
     });
   });
 

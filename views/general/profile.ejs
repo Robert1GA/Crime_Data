@@ -13,6 +13,9 @@
       <a href="/general/address/<%=address.id%>" class="delete-link">
         <img src="/images/delete-icon.png" class="small-icon">
       </a>
+      <% if (address.name + ' Chicago' !== address.address) { %>
+        <span><%= address.name %>: </span>
+      <% } %>
       <span><%= address.address %></span>
     </div>
     <% }); %>

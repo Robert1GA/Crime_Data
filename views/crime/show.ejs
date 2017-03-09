@@ -9,7 +9,9 @@
       <% addresses.forEach(function(address) { %>
         <div class="well">
           <p>
-            <%= address.name %>:
+            <% if (address.name + ' Chicago' !== address.address) { %>
+              <%= address.name %>:
+            <% } %>
             <a class="addresses" href="#"><%= address.address %></a>
           </p>
         </div>

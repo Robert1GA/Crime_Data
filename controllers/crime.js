@@ -12,8 +12,8 @@ var app = express();
 // Find all homicides
 router.get('/show', isLoggedIn, function(req, res) {
   db.homicide.findAll({
-
-  }).then(function(homicides) {
+    include: [db.lucr]
+  }).then(function(homicides, lucrs) {
     req.user.getAddresses().then(function(addresses) {
       res.render('crime/show', {
         homicides: homicides,
