@@ -10,22 +10,57 @@ var app = express();
 
 
 // Find all homicides
-router.get('/show', isLoggedIn, function(req, res) {
+
+// router.get('/show', function(req, res) {
+//   db.homicide.findAll({
+//
+//   })
+//   .then(function(homicides) {
+//     req.user.getAddresses().then(function(addresses) {
+//       res.render('crime/show', {
+//         homicides: homicides,
+//         addresses: addresses
+//       });
+//     })
+//     console.log('db complete');
+//   }).catch(function(error) {
+//     console.log(error);
+//     res.status(400).render('general/404');
+//   });
+// });
+
+router.get('/show', function(req, res) {
   db.homicide.findAll({
 
-  }).then(function(homicides) {
-    req.user.getAddresses().then(function(addresses) {
-      res.render('crime/show', {
-        homicides: homicides,
-        addresses: addresses
-      });
+  })
+  .then(function(homicides) {
+    res.render('crime/show', {
+      homicides: homicides
     })
-    console.log('db complete');
+    console.log('db complete')
   }).catch(function(error) {
     console.log(error);
     res.status(400).render('general/404');
-  });
-});
+})
+})
+
+
+// .then(function(homicides) {
+//   req.user.getAddresses()
+//   .then(function(addresses) {
+//     res.render('crime/show', {
+//       homicides: homicides,
+//       addresses: addresses
+//     });
+//   })
+//   console.log('db complete');
+// }).catch(function(error) {
+//   console.log(error);
+//   res.status(400).render('general/404');
+// });
+
+
+
 
 // router.get('/', function(req, res) {
 //   db.homicide.findAll()
