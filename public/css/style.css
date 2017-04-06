@@ -7,6 +7,7 @@ body{
 }
 .center-container {
   text-align: center;
+  margin-top: 50px;
 }
 .homepage-image-container {
   display: inline-block;
@@ -20,13 +21,19 @@ body{
   margin-bottom: 10px;
 }
 .homepage-image-text {
-  margin: 12px 0 20px 0; 
+  margin: 12px 0 20px 0;
+}
+.map-container {
+  margin-top: 50px;
 }
 
 .homepage-image-container:hover{
   transform: scale(1.1);
   border-color: red;
   box-shadow: 0 0 10px red;
+}
+.feature-live:active {
+  transform: scale(.99);
 }
 /*.navbar-default {
   background-color: #808080;
@@ -114,4 +121,8 @@ body{
 
 .foot-space {
   padding-bottom: 50px;
+}
+
+.navbar {
+  margin-bottom: 0;
 }

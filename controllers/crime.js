@@ -11,33 +11,24 @@ var app = express();
 
 // Find all homicides
 
-// router.get('/show', function(req, res) {
-//   db.homicide.findAll({
-//
-//   })
-//   .then(function(homicides) {
-//     req.user.getAddresses().then(function(addresses) {
-//       res.render('crime/show', {
-//         homicides: homicides,
-//         addresses: addresses
-//       });
-//     })
-//     console.log('db complete');
-//   }).catch(function(error) {
-//     console.log(error);
-//     res.status(400).render('general/404');
-//   });
-// });
-
 router.get('/show', function(req, res) {
   db.homicide.findAll({
 
   })
   .then(function(homicides) {
-    res.render('crime/show', {
-      homicides: homicides
-    })
-    console.log('db complete')
+    if (req.user) {
+      req.user.getAddresses().then(function(addresses) {
+        res.render('crime/show', {
+          homicides: homicides,
+          addresses: addresses
+        })
+      })
+    } else {
+      res.render('crime/show', {
+        homicides: homicides
+      })
+      console.log('db complete')
+    }    
   }).catch(function(error) {
     console.log(error);
     res.status(400).render('general/404');
@@ -45,29 +36,17 @@ router.get('/show', function(req, res) {
 })
 
 
-// .then(function(homicides) {
-//   req.user.getAddresses()
-//   .then(function(addresses) {
-//     res.render('crime/show', {
-//       homicides: homicides,
-//       addresses: addresses
-//     });
-//   })
-//   console.log('db complete');
-// }).catch(function(error) {
-//   console.log(error);
-//   res.status(400).render('general/404');
-// });
-
-
-
-
-// router.get('/', function(req, res) {
-//   db.homicide.findAll()
-//   .then(function(homicides) {
-//     res.render('crime/show', {homicides: homicides})
-//   })
-//   .catch(function(error) {
+// router.get('/show', isLoggedIn, function(req, res) {
+//   db.homicide.findAll({
+//     include: [db.lucr]
+//   }).then(function(homicides) {
+//     req.user.getAddresses().then(function(addresses) {
+//       res.render('crime/show', {
+//         homicides: homicides,
+//         addresses: addresses
+//       });
+//     })
+//   }).catch(function(error) {
 //     res.status(400).render('general/404');
 //   });
 // });
