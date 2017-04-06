@@ -1,10 +1,33 @@
+body{
+  background-color: #e6e6e6;
+}
+
 #map {
   height: 450px;
 }
-
 .center-container {
   text-align: center;
 }
+.homepage-image-container {
+  display: inline-block;
+  margin: 15px;
+  border-color: black;
+  box-shadow: 0 0 1rem black;
+}
+.homepage-image {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 10px;
+}
+
+.homepage-image-container:hover{
+  transform: scale(1.1);
+  border-color: red;
+  box-shadow: 0 0 1rem red;
+}
+/*.navbar-default {
+  background-color: #808080;
+}*/
 
 #flag {
   height: 44px;
@@ -57,10 +80,7 @@
   height: 20px;
 }
 
-.error404 {
-  width: 550px;
-  height: 550px;
-}
+
 
 #policeTape {
   width: 50%;
