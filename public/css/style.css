@@ -19,11 +19,14 @@ body{
   height: 400px;
   margin-bottom: 10px;
 }
+.homepage-image-text {
+  margin: 12px 0 20px 0; 
+}
 
 .homepage-image-container:hover{
   transform: scale(1.1);
   border-color: red;
-  box-shadow: 0 0 1rem red;
+  box-shadow: 0 0 10px red;
 }
 /*.navbar-default {
   background-color: #808080;
