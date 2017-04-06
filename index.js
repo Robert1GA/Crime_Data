@@ -18,7 +18,6 @@ app.use(session({
   resave: false,  // won't save if there are no changes
   saveUninitialized: true, // save if this is a new session never saved
 }));
-// API_KEY=AIzaSyAg21gS6eQ5vqiVyFeT4tPgWBSN2lcrR-E  // old key
 
 app.use(passport.initialize());
 app.use(passport.session());

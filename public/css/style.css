@@ -28,11 +28,19 @@ body{
 }
 
 .homepage-image-container:hover{
-  transform: scale(1.1);
+  -webkit-transform:scale(1.05); /* Safari and Chrome */
+  -moz-transform:scale(1.05); /* Firefox */
+  -ms-transform:scale(1.05); /* IE 9 */
+  -o-transform:scale(1.05); /* Opera */
+  transform: scale(1.05);
   border-color: red;
   box-shadow: 0 0 10px red;
 }
 .feature-live:active {
+  -webkit-transform:scale(.99); /* Safari and Chrome */
+  -moz-transform:scale(.99); /* Firefox */
+  -ms-transform:scale(.99); /* IE 9 */
+  -o-transform:scale(.99); /* Opera */
   transform: scale(.99);
 }
 /*.navbar-default {
