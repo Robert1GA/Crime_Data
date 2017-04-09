@@ -113,6 +113,7 @@ function goToAddress(geocoder, resultsMap) {
   geocoder.geocode({'address': locationToGo}, function(results, status) {
     if (status === 'OK') {
       resultsMap.setCenter(results[0].geometry.location);
+      console.log(locationToGo, results[0].geometry.location);
       resultsMap.setZoom(15);
     } else {
       console.log('Geocode was not successful for the following reason: ' + status);

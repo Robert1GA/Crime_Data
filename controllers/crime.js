@@ -27,8 +27,7 @@ router.get('/show', function(req, res) {
       res.render('crime/show', {
         homicides: homicides
       })
-      console.log('db complete')
-    }    
+    }
   }).catch(function(error) {
     console.log(error);
     res.status(400).render('general/404');
