@@ -134,3 +134,10 @@ body{
 .navbar {
   margin-bottom: 0;
 }
+
+.glyphicon-trash {
+  color: red;
+}
+.glyphicon-edit {
+  color: black;
+}

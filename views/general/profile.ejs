@@ -8,10 +8,10 @@
     <% user.addresses.forEach(function(address) { %>
     <div>
       <a href="/general/address/<%=address.id%>/edit">
-        <span class="glyphicon glyphicon-edit" style="color: black"></span>
+        <span class="glyphicon glyphicon-edit"></span>
       </a>
       <a href="/general/address/<%=address.id%>" class="delete-link">
-        <span class="glyphicon glyphicon-trash" style="color: red"></span>
+        <span class="glyphicon glyphicon-trash"></span>
       </a>
       <span><%= address.address %></span>
     </div>

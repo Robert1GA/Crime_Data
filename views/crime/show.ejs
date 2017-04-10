@@ -30,7 +30,9 @@
         <input type="text" class="form-control" name="address"
           id="address" placeholder="Chicago Street Address (omit the city & state)">
       </div>
-      <input id="submit" type="submit" class="btn btn-danger" value="Save Address">
+      <% if(currentUser !== undefined) { %>
+        <input id="submit" type="submit" class="btn btn-danger" value="Save Address">
+      <% } %>
       <input id="zoom" type="button" class="btn btn-primary" value="Go to Address">
     </form>
   </div>
