@@ -40,10 +40,15 @@
 
 <script>
   var markers = <%- JSON.stringify(homicides) %>
+  var addresses;
+  <% if(currentUser !== undefined) { %>
+     addresses = <%- JSON.stringify(addresses) %>
+  <% } %>
 </script>
+
 <script defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4_czTJLG6hnJWm_Jy6aQKbqPjSqSUVU&libraries=places&callback=initMap">
-
 </script>
+
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>

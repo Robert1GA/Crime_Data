@@ -82,7 +82,7 @@ var initMap = function() {
     homicideMarker.addListener('click', function() {
       var infoWindow = new google.maps.InfoWindow({
         content:
-          '<p>'+ 'BLOCK: ' + marker.block + '</p>' +
+          '<p>' + 'BLOCK: ' + marker.block + '</p>' +
           '<p>' + 'LOCATION: ' + marker.locationDesc + '</p>' +
           '<p>' + 'DATE: ' + marker.date + '</p>'
 
@@ -96,7 +96,32 @@ var initMap = function() {
     {imagePath: '/images/m',
     gridSize: 40,
     maxZoom: 12
-   });
+  });
+
+
+  // Markers for saved user addresses if current user
+  var userAddresses = [];
+  if (addresses) {
+    addresses.forEach(function(address) {
+      var position = new google.maps.LatLng(address.lat, address.lng);
+      var addressMarker = new google.maps.Marker({
+        position: position,
+        map: map
+      });
+
+      addressMarker.addListener('click', function() {
+        var infoWindow = new google.maps.InfoWindow({
+          content:
+            '<p>' + address.address + '</p>'
+        });
+        infoWindow.open(map, addressMarker);
+      })
+    });
+  }
+
+
+
+
 
 
    // Listen for click event, then re-center and zoom in to address entered
@@ -106,7 +131,20 @@ var initMap = function() {
      goToAddress(geocoder, map);
    });
 
-}; // End of initMap()
+}; // End of initMap
+
+var autocomplete;
+function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('address')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
 
 function goToAddress(geocoder, resultsMap) {
   var locationToGo = document.getElementById('address').value;
@@ -119,7 +157,7 @@ function goToAddress(geocoder, resultsMap) {
       console.log('Geocode was not successful for the following reason: ' + status);
     }
   });
-} // End of goToAddress()
+} // End of goToAddress
 
 // Edit addresses
 $('.edit-form').on('submit', function(e){
