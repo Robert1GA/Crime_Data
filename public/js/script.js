@@ -133,18 +133,9 @@ var initMap = function() {
 
 }; // End of initMap
 
-var autocomplete;
-function initAutocomplete() {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types.
-        autocomplete = new google.maps.places.Autocomplete(
-            (document.getElementById('address')),
-            {types: ['geocode']});
+var input = document.getElementById('address');
+var autocomplete = new google.maps.places.Autocomplete(input);
 
-        // When the user selects an address from the dropdown, populate the address
-        // fields in the form.
-        autocomplete.addListener('place_changed', fillInAddress);
-      }
 
 function goToAddress(geocoder, resultsMap) {
   var locationToGo = document.getElementById('address').value;
@@ -158,6 +149,7 @@ function goToAddress(geocoder, resultsMap) {
     }
   });
 } // End of goToAddress
+
 
 // Edit addresses
 $('.edit-form').on('submit', function(e){
@@ -190,6 +182,5 @@ $('.delete-link').on('click', function(e) {
 
 
 // $( document ).ready(function() {
-//   console.log('I am ready');
 //
 // });
